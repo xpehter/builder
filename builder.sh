@@ -3,9 +3,7 @@
 # Test task from SKB Kontur:
 # https://github.com/kontur-exploitation/testcase-pybash
 
-#REPO_REMOTE_ADDRESS='https://github.com/kontur-exploitation/testcase-pybash.git'
-REPO_REMOTE_ADDRESS='https://github.com/xpehter/kont_test.git'
-#REPO_REMOTE_ADDRESS='https://github.com/xpehter/ideco.git'
+REPO_REMOTE_ADDRESS='https://github.com/kontur-exploitation/testcase-pybash.git'
 REPO_LOCAL_DIR='dirik'
 REPO_REMOTE_CHECK_INTERVAL=5  # seconds
 PATH_LOG='./xuilder.log'
@@ -112,7 +110,6 @@ do
   for REM_BRANCH in $(AllBrRemRepo $REPO_REMOTE_ADDRESS)
   do
     if [[ "$(LastComRemBr $REPO_REMOTE_ADDRESS $REM_BRANCH)" != "$(LastComLocBr $REPO_LOCAL_DIR $REM_BRANCH)" ]]; then
-      echo "remote $(LastComRemBr $REPO_REMOTE_ADDRESS $REM_BRANCH) = local $(LastComLocBr $REPO_LOCAL_DIR $REM_BRANCH)"
       SetComLocRepo $REPO_REMOTE_ADDRESS $REPO_LOCAL_DIR
       git -C $REPO_LOCAL_DIR checkout $REM_BRANCH
       SetBldNum 1
@@ -121,7 +118,6 @@ do
       WriteLog 'Build image completed'
       RunCont
       WriteLog 'Container started'
-#      break
       WriteLog 'In while'
     fi
   done
